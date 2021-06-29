@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   spanner:
-    image: spanner:0.0.104
+    image: spannerprotocol/spanner:0.0.104
     command: "--base-path /data --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0'
             --port 30333 --ws-port 9944 --rpc-port 9933 --rpc-external --rpc-cors=all --ws-external --pruning archive
             --chain ${CHAIN_SPEC}
