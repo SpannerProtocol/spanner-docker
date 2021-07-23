@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  spanner:
+    image: spannerprotocol/spanner:spec105
+    command: "--base-path /data --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0'
+            --port 30333 --ws-port 9944 --rpc-port 9933
+            --unsafe-pruning --pruning 1000
+            --validator
+            --chain ${CHAIN_SPEC}
+            --bootnodes ${BOOT_NODE}
+            --name ${NODE_NAME}"
+    ports:
+      - "30333:30333"
+    volumes:
+      - chain_data:/data
+volumes:
+  chain_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./data

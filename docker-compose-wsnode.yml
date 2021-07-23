@@ -1,16 +1,16 @@
 version: "3.9"
 services:
   spanner:
-    image: spannerprotocol/spanner:0.0.104
+    image: spannerprotocol/spanner:spec105
     command: "--base-path /data --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0'
-            --port 30333 --ws-port 9944 --rpc-port 9933 --rpc-external --rpc-cors=all --ws-external --pruning archive
+            --port 30333 --ws-port 9944 --rpc-port 9933
+            --rpc-external --rpc-cors=all --ws-external
+            --pruning archive
             --chain ${CHAIN_SPEC}
-            --bootnodes ${BOOT_NODE}"
+            --bootnodes ${BOOT_NODE}
+            --name ${NODE_NAME}"
     ports:
       - "30333:30333"
-      - "9933:9933"
-      - "9944:9944"
-      - "9615:9615"
     volumes:
       - chain_data:/data
   nginx:
