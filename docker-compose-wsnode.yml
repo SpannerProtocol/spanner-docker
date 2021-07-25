@@ -13,6 +13,11 @@ services:
       - "30333:30333"
     volumes:
       - chain_data:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+        max-file: "10"
   nginx:
     restart: always
     image: nginx:1.21.0-alpine
@@ -20,6 +25,11 @@ services:
       - 80:80
     volumes:
       - nginx_conf:/etc/nginx/conf.d
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
     depends_on:
       - spanner
 volumes:

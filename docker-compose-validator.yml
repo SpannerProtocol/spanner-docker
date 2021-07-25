@@ -13,6 +13,11 @@ services:
       - "30333:30333"
     volumes:
       - chain_data:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+        max-file: "10"
 volumes:
   chain_data:
     driver: local
